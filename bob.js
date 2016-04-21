@@ -6,32 +6,27 @@
 var Bob = function() {};
 
 Bob.prototype.hey = function(input) {
-  var isSilentTreatment = function(input) {
-      return /^\s*$/.test(input);
+  var isSilence, isYelling, isQuestion;
+
+    isSilence = function (message) {
+      return !message.match(/\S/);
     };
 
-    var isShouting = function(input) {
-      return input.toUpperCase() === input && input.toLowerCase() !== input;
+    isYelling = function (message) {
+      return !message.match(/[a-z]/);
     };
 
-    var isQuestion = function(input) {
-      return input.charAt(input.length - 1) === '?';
+    isQuestion = function (message) {
+      return !message.match(/[^?]$/);
     };
 
-    this.hey = function(input) {
-      if (isSilentTreatment(input)) {
-        return 'Fine. Be that way!';
+    return {
+      hey: function (message) {
+        if (isSilence(message)) { return 'Fine. Be that way!'; }
+        if (isYelling(message)) { return 'Woah, chill out!'; }
+        if (isQuestion(message)) { return 'Sure.'; }
+        return 'Whatever.';
       }
-
-      if (isShouting(input)) {
-        return 'Whoa, chill out!';
-      }
-
-      if (isQuestion(input)) {
-        return 'Sure.';
-      }
-
-      return 'Whatever.';
     };
 };
 
