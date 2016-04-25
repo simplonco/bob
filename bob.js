@@ -6,28 +6,28 @@
 var Bob = function() {};
 
 Bob.prototype.hey = function(input) {
-  var isSilence, isYelling, isQuestion;
+    var response = "Whatever.",     // default response
+        lastChar = input.charAt(input.length - 1),
+        isSilence = input.trim() === '',
+        isShouting = input.toUpperCase() === input &amp;&amp; !isSilence,
+        isAllNumbers = input.search(/(\d+,?\s?)+[\.!\?]*/) != -1,
+        isQuestion = lastChar === '?',
+        isExcl = lastChar === '!';
 
-    isSilence = function (message) {
-      return !message.match(/\S/);
-    };
+    if (isShouting &amp;&amp; !isAllNumbers) {
+        response = 'Whoa, chill out!';
+    } else if (isQuestion) {
+        response = 'Sure.';
+    } else if (isAllNumbers) {
+        if (isExcl) {
+            response = 'Whoa, chill out!';
+        } else {
+            response = "Whatever.";
+        }
+    } else if (isSilence) {
+        response = "Fine. Be that way!";
+    }
 
-    isYelling = function (message) {
-      return !message.match(/[a-z]/);
-    };
-
-    isQuestion = function (message) {
-      return !message.match(/[^?]$/);
-    };
-
-    return {
-      hey: function (message) {
-        if (isSilence(message)) { return 'Fine. Be that way!'; }
-        if (isYelling(message)) { return 'Woah, chill out!'; }
-        if (isQuestion(message)) { return 'Sure.'; }
-        return 'Whatever.';
-      }
-    };
+    return response;
 };
-
 module.exports = Bob;
