@@ -5,30 +5,34 @@
 
 var Bob = function() {};
 
+function shouting(input) {
+  return input.toUpperCase() == input;
+}
+function askingAQuestion(input) {
+  return input[input.length-1] == "?";
+}
+function talkingForcefully(input) {
+  return input[input.length-1] == "!";
+}
+function onlyNumbers(input) {
+  return ;
+}
+
 Bob.prototype.hey = function(input) {
-    var response = "Whatever.", // default response
-        lastChar = input.charAt(input.length - 1),
-        isSilence = input.trim() === '',
-        isShouting = input.toUpperCase() === input & amp; & amp;
-    !isSilence,
-    isAllNumbers = input.search(/(\d+,?\s?)+[\.!\?]*/) != -1,
-        isQuestion = lastChar === '?',
-        isExcl = lastChar === '!';
-
-    if (isShouting & amp; & amp; !isAllNumbers) {
-        response = 'Whoa, chill out!';
-    } else if (isQuestion) {
-        response = 'Sure.';
-    } else if (isAllNumbers) {
-        if (isExcl) {
-            response = 'Whoa, chill out!';
-        } else {
-            response = "Whatever.";
-        }
-    } else if (isSilence) {
-        response = "Fine. Be that way!";
-    }
-
-    return response;
+  if( onlyNumbers(input) ){
+    return 'Whatever';
+  }
+  else if( shouting(input) ){
+    return 'Whoa, chill out!';
+  }
+  // else if ( talkingForcefully(input) ) {
+  //   return 'Whatever.';
+  // }
+  else if ( askingAQuestion(input) ) {
+    return 'Sure.';
+  }
+  else {
+    return 'Whatever.';
+  }
 };
 module.exports = Bob;
