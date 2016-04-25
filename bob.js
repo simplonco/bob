@@ -6,15 +6,16 @@
 var Bob = function() {};
 
 Bob.prototype.hey = function(input) {
-    var response = "Whatever.",     // default response
+    var response = "Whatever.", // default response
         lastChar = input.charAt(input.length - 1),
         isSilence = input.trim() === '',
-        isShouting = input.toUpperCase() === input &amp;&amp; !isSilence,
-        isAllNumbers = input.search(/(\d+,?\s?)+[\.!\?]*/) != -1,
+        isShouting = input.toUpperCase() === input & amp; & amp;
+    !isSilence,
+    isAllNumbers = input.search(/(\d+,?\s?)+[\.!\?]*/) != -1,
         isQuestion = lastChar === '?',
         isExcl = lastChar === '!';
 
-    if (isShouting &amp;&amp; !isAllNumbers) {
+    if (isShouting & amp; & amp; !isAllNumbers) {
         response = 'Whoa, chill out!';
     } else if (isQuestion) {
         response = 'Sure.';
