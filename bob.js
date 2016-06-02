@@ -9,9 +9,28 @@
 var Bob = function() {};
 
 Bob.prototype.hey = function(input) {
-//
-// YOUR CODE GOES HERE
-//
+ if (isYelling()) {
+    return 'Whoa, chill out!';
+  } else if (isAsking()) {
+    return 'Sure.';
+  } else if (isSayingNothing()) {
+    return 'Fine. Be that way!';
+  } else {
+    return 'Whatever.';
+  }
+
+  function isYelling() {
+    return input.toLowerCase() !== input && input.toUpperCase() === input;
+  }
+
+  function isAsking() {
+    return input.substr(input.length - 1) === "?";
+  }
+
+  function isSayingNothing() {
+    return input.trim().length == 0;
+  }
+
 };
 
 module.exports = Bob;
