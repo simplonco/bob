@@ -9,9 +9,20 @@
 var Bob = function() {};
 
 Bob.prototype.hey = function(input) {
-//
-// YOUR CODE GOES HERE
-//
+
+  switch(input) {
+    case "question":
+        return "Sure";
+        break;
+    case "yell":
+        return "Whoa";
+        break;
+    case "address":
+        return "Fine";
+        break;
+    default:
+        default return "Whatever";
+}
 };
 
 module.exports = Bob;
